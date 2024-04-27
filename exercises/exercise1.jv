@@ -1,11 +1,5 @@
 pipeline AirportsPipeline {
 
-	AirportsExtractor -> AirportsTextFileInterpreter;
-
-	AirportsTextFileInterpreter
-		-> AirportsCSVInterpreter 
-	   	-> AirportsTableInterpreter
-		-> AirportsLoader;
 
 	block AirportsExtractor oftype HttpExtractor {
 
@@ -18,7 +12,7 @@ pipeline AirportsPipeline {
 
 	
 	block AirportsCSVInterpreter oftype CSVInterpreter {
-		enclosing: '"';
+		delimiter: ';';
 	}
 
 	
@@ -43,9 +37,14 @@ pipeline AirportsPipeline {
 
 	
 	block AirportsLoader oftype SQLiteLoader {
-		table: "Airports";
-		file: "./airports.sqlite";
+		table: "airports";
+		file: "./data/airports.sqlite";
 	}
 
+    AirportsExtractor
+	    -> AirportsTextFileInterpreter
+		-> AirportsCSVInterpreter 
+	   	-> AirportsTableInterpreter
+		-> AirportsLoader;
 	  
 }
