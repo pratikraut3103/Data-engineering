@@ -26,8 +26,8 @@ pipeline AirportsPipeline{
     }
 
     block AirportsLoader oftype SQLiteLoader {
-		table: "tress";
-		file: "./tress.sqlite";
+		table: "trees";
+		file: "./trees.sqlite";
 	}
     
         
