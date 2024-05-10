@@ -45,11 +45,6 @@ pipeline AirportsPipeline{
 		file: "./trees.sqlite";
 	}
     
-        
-    
-
-    
-
 
     AirportsExtractor 
         ->AirportsTextFileInterpreter
