@@ -12,6 +12,10 @@ pipeline AirportsPipeline{
 		delimiter: ';';
 	}
 
+    block AirportColumnDeleter oftype ColumnDeleter {
+        delete: [column E];
+    }
+
     block AirportsTableInterpreter oftype TableInterpreter {
 		header: true;
 		columns: [
@@ -19,18 +23,11 @@ pipeline AirportsPipeline{
 			"stadtteil" oftype filtercol,
 			"standort" oftype text,
 			"baumart_botanisch" oftype text,
-			"baumart_deutsch" oftype text,
 			"id" oftype text,
 			"baumfamilie" oftype text,
 		];
     }
 
-    block AirportsLoader oftype SQLiteLoader {
-		table: "trees";
-		file: "./trees.sqlite";
-	}
-    
-        
     valuetype filtercol oftype text{
         constraints:[
             CointainsFurth 
@@ -38,12 +35,26 @@ pipeline AirportsPipeline{
     }
 
     constraint CointainsFurth on text:
-        value matches /^Furth/ ;
+        value matches /^Furth-/ ;
+
+
+    
+
+    block AirportsLoader oftype SQLiteLoader {
+		table: "trees";
+		file: "./trees.sqlite";
+	}
+    
+        
+    
+
+    
 
 
     AirportsExtractor 
         ->AirportsTextFileInterpreter
         -> AirportsCSVInterpreter
+        -> AirportColumnDeleter
         -> AirportsTableInterpreter
         -> AirportsLoader;
 }
