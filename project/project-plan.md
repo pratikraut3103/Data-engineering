@@ -25,8 +25,7 @@ Cricket Match Analysis.
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
-
+This project will provide an overview of the statistics for each cricket player based on data from the past three years. Through this project, I will perform data analysis and create a model to predict the top wicket-takers and the players who will make the most runs in the year 2024. Additionally, I will identify the winning and runner-up teams.
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
