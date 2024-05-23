@@ -30,7 +30,7 @@ if __name__ == '__main__':
     print(current_dir)
     housing_data(data_path)
     print('Housing data done')
-    economic_data()
+    economic_data(data_path)
     print('Economic data done')
     print('Alas')
 
