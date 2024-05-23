@@ -2,12 +2,8 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 import shutil
 import os
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-base_path = os.path.abspath(os.path.join(current_dir, os.pardir))
-data_path = os.path.join(base_path, 'data')
 
-print(data_path)
-print(current_dir)
+
 def move_csv(current, destination):
     shutil.move(current, destination)
 
@@ -26,6 +22,12 @@ def economic_data():
 if __name__ == '__main__':
     api = KaggleApi()
     api.authenticate()
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    base_path = os.path.abspath(os.path.join(current_dir, os.pardir))
+    data_path = os.path.join(base_path, 'data')
+
+    print(data_path)
+    print(current_dir)
     housing_data()
     print('Housing data done')
     economic_data()
