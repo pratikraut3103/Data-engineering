@@ -9,14 +9,14 @@ def move_csv(current, destination):
 
 def rename_csv(old,new):
     os.rename(old,new)
-def housing_data():
-    api.dataset_download_file('yasserh/housing-prices-dataset', fr'Housing.csv')
-    move_csv(os.path.join(current_dir, 'Housing.csv'), os.path.join(data_path, 'Housing.csv'))
+def housing_data(data_path):
+    api.dataset_download_file('yasserh/housing-prices-dataset', fr'Housing.csv', path=data_path)
+    #move_csv(os.path.join(current_dir, 'Housing.csv'), os.path.join(data_path, 'Housing.csv'))
 
 def economic_data():
     api.dataset_download_file('fernandol/countries-of-the-world', fr'countries of the world.csv')
-    rename_csv(os.path.join(current_dir, 'countries%20of%20the%20world.csv'), os.path.join(current_dir, 'countries_economic.csv'))
-    move_csv(os.path.join(current_dir, 'countries_economic.csv'), os.path.join(data_path, 'countries_economic.csv'))
+    #rename_csv(os.path.join(current_dir, 'countries%20of%20the%20world.csv'), os.path.join(current_dir, 'countries_economic.csv'))
+    #move_csv(os.path.join(current_dir, 'countries_economic.csv'), os.path.join(data_path, 'countries_economic.csv'))
 
 # Authenticate using kaggle.json
 if __name__ == '__main__':
@@ -28,8 +28,8 @@ if __name__ == '__main__':
 
     print(data_path)
     print(current_dir)
-    housing_data()
+    housing_data(data_path)
     print('Housing data done')
-    economic_data()
+    #economic_data()
 
 
