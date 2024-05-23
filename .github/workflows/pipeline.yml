@@ -19,5 +19,12 @@ jobs:
           echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > $HOME/.kaggle/kaggle.json
           chmod 600 $HOME/.kaggle/kaggle.json
 
-      - name: Run MADE Pipeline
-        run: python3 ./project/pipeline.py
+      - name: Run shell script
+        run: |
+          bash ./project/pipeline.sh
+          exit_code=$?
+          if [ $exit_code -eq 0 ]; then
+             echo "Script executed successfully."
+          else
+             echo "Script failed with exit code $exit_code."
+             exit $exit_code
