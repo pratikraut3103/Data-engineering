@@ -21,7 +21,7 @@ The relationship between housing prices and economic conditions is a critical ar
 1. House Prices: Advanced Regression Techniques
 
 Dataset Name: House Prices: Advanced Regression Techniques
-Link: https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
+Link: https://www.kaggle.com/datasets/yasserh/housing-prices-dataset
 
 2. Global Economic Data
 
