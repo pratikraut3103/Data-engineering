@@ -26,6 +26,8 @@ def economic_data():
 if __name__ == '__main__':
     api = KaggleApi()
     api.authenticate()
-    economic_data()
     housing_data()
+    print('Housing data done')
+    economic_data()
+
 
