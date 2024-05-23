@@ -18,7 +18,7 @@ def economic_data(data_path, db_path):
     api.dataset_download_file('fernandol/countries-of-the-world', fr'countries of the world.csv',path=data_path)
     rename_csv(os.path.join(data_path, 'countries%20of%20the%20world.csv'), os.path.join(data_path, 'countries_economic.csv'))
     data = pd.read_csv(fr'{data_path}/countries_economic.csv')
-    print(data.head())
+    data = data.dropna(axis=0, how='any')
     conn = sqlite3.connect(db_path)
     data.to_sql('countries_economic', conn, index=False, if_exists='replace')
 
