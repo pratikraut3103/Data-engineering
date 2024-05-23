@@ -1,22 +1,20 @@
 from kaggle.api.kaggle_api_extended import KaggleApi
-import shutil
+import pandas as pd
 import os
-
-
-
-def move_csv(current, destination):
-    shutil.move(current, destination)
+import shutil
 
 def rename_csv(old,new):
     os.rename(old,new)
 def housing_data(data_path):
     api.dataset_download_file('yasserh/housing-prices-dataset', fr'Housing.csv', path=data_path)
-    #move_csv(os.path.join(current_dir, 'Housing.csv'), os.path.join(data_path, 'Housing.csv'))
+    data = pd.read_csv(fr'{data_path}/Housing.csv')
+    print(data.head())
 
 def economic_data(data_path):
     api.dataset_download_file('fernandol/countries-of-the-world', fr'countries of the world.csv',path=data_path)
     rename_csv(os.path.join(data_path, 'countries%20of%20the%20world.csv'), os.path.join(data_path, 'countries_economic.csv'))
-    #move_csv(os.path.join(current_dir, 'countries_economic.csv'), os.path.join(data_path, 'countries_economic.csv'))
+    data = pd.read_csv(fr'{data_path}/countries_economic.csv')
+    print(data.head())
 
 # Authenticate using kaggle.json
 if __name__ == '__main__':
@@ -32,6 +30,6 @@ if __name__ == '__main__':
     print('Housing data done')
     economic_data(data_path)
     print('Economic data done')
-    print('Alas')
+
 
 
