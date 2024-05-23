@@ -1,4 +1,4 @@
-ame: MADE Project Pipeline
+name: MADE Project Pipeline
 
 on:
   push:
