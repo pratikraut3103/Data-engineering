@@ -1,50 +1,113 @@
-pipeline AirportsPipeline {
+pipeline googdsTransportPipeline {
 
-
-	block AirportsExtractor oftype HttpExtractor {
-
-		
-		url: "https://opendata.rhein-kreis-neuss.de/api/explore/v2.1/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv?lang=en&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B";
+	block goodsTransporterExtractor oftype HttpExtractor {
+		url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46131-0014_00.csv";
 	}
 
-	
-	block AirportsTextFileInterpreter oftype TextFileInterpreter { }
+	block goodsTransporterTextFileInterpreter oftype TextFileInterpreter {
+        encoding: "latin6";
+    }
 
-	
-	block AirportsCSVInterpreter oftype CSVInterpreter {
-		delimiter: ';';
+    block goodsTransporterTextRangeSelector oftype TextRangeSelector {
+        lineFrom: 8;
+        lineTo: 41336;
+    }
+
+    block goodsTransporterCSVInterpreter oftype CSVInterpreter {
+        delimiter: ";";
+    }
+
+    block goodsTrnasporterColRename1 oftype CellWriter {
+        at: cell A1;
+        write: ["year"];
+    }
+
+    block goodsTrnasporterColRename2 oftype CellWriter {
+        at: cell B1;
+        write: ['month'];
+    }
+
+    block goodsTrnasporterColRename3 oftype CellWriter {
+        at: cell C1;
+        write: ['goods_id'];
+    }
+
+    block goodsTrnasporterColRename4 oftype CellWriter {
+        at: cell D1;
+        write: ['goods_name'];
+    }
+
+    block goodsTransporterColRename5 oftype CellWriter {
+        at: cell E1;
+        write: ['goods_source'];
+    }
+
+    block goodsTransporterColRename6 oftype CellWriter {
+        at: cell AT1;
+        write: ['abroad'];
+    }
+
+    block goodsTransporterColRename7 oftype CellWriter {
+        at: cell AU1;
+        write: ['total'];
+    }
+
+    block goodsTransporterColumnDeleter oftype ColumnDeleter {
+        delete: [column F, column G,column H,column I,column J,column K,column L, column M, column N, column O,column P, column Q , column R,
+                column S, column T, column U, column V, column W, column X, column Y, column Z, column AA, column AB,column AC,column AD,column AE,
+                column AF,column AG,column AH,column AI,column AJ,column AK, column AL,column AM, column AN,column AO, column AP,column AQ, column AR, column AS];
+    }
+
+    constraint positiveNumber oftype RangeConstraint {
+        lowerBound: 0;
+        lowerBoundInclusive: false;
+    }
+    
+    valuetype PositiveInteger oftype integer {
+        constraints: [positiveNumber];
+    }
+
+    valuetype filtercol oftype text{
+        constraints:[
+            CointainsNST7
+        ];
+    }
+
+    constraint CointainsNST7 on text:
+        value matches /^NST7-\w\w\w/ ;
+
+    block goodsTranporterInterpreter oftype TableInterpreter {
+
+        header: true;
+        columns:[
+            "year" oftype PositiveInteger,
+            "month" oftype text,
+            "goods_id" oftype filtercol,
+            "goods_name" oftype text,
+            "goods_source" oftype text,
+            "abroad" oftype PositiveInteger,
+            "total" oftype  PositiveInteger
+        ];
+
+    }
+
+    block goodsTranporterLoader oftype SQLiteLoader {
+		table: "goods";
+		file: "./goodsTransportedByTrain.sqlite";
 	}
 
-	
-	block AirportsTableInterpreter oftype TableInterpreter {
-		header: true;
-		columns: [
-			"Lfd. Nummer" oftype integer,
-			"Name des Flughafens" oftype text,
-			"Ort" oftype text,
-			"Land" oftype text,
-			"IATA" oftype text,
-			"ICAO" oftype text,
-			"Latitude" oftype decimal,
-			"Longitude" oftype decimal,
-			"Altitude" oftype integer,
-			"Zeitzone" oftype decimal,
-			"DST" oftype text,
-			"Zeitzonen-Datenbank" oftype text,
-            "geo_punkt" oftype text,
-		];
-	}
-
-	
-	block AirportsLoader oftype SQLiteLoader {
-		table: "airports";
-		file: "./airports.sqlite";
-	}
-
-    AirportsExtractor
-	    -> AirportsTextFileInterpreter
-		-> AirportsCSVInterpreter 
-	   	-> AirportsTableInterpreter
-		-> AirportsLoader;
-	  
+    goodsTransporterExtractor
+        ->goodsTransporterTextFileInterpreter
+        ->goodsTransporterTextRangeSelector
+        ->goodsTransporterCSVInterpreter
+        ->goodsTrnasporterColRename1
+        ->goodsTrnasporterColRename2
+        ->goodsTrnasporterColRename3
+        ->goodsTrnasporterColRename4
+        ->goodsTransporterColRename5
+        ->goodsTransporterColRename6
+        ->goodsTransporterColRename7
+        ->goodsTransporterColumnDeleter
+        ->goodsTranporterInterpreter
+        ->goodsTranporterLoader;
 }
