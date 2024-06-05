@@ -58,9 +58,8 @@ pipeline googdsTransportPipeline {
                 column AF,column AG,column AH,column AI,column AJ,column AK, column AL,column AM, column AN,column AO, column AP,column AQ, column AR, column AS];
     }
 
-    constraint positiveNumber oftype RangeConstraint {
-        lowerBound: 0;
-        lowerBoundInclusive: false;
+    constraint positiveNumber oftype integer{
+        value > 0;
     }
     
     valuetype PositiveInteger oftype integer {
