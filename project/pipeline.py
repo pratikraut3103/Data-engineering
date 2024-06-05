@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import zipfile
 import sqlite3
+import numpy as np
 
 
 def un_zip_file(source):
@@ -19,8 +20,11 @@ def vehicle_sales_data(data_path, db_path):
     data = pd.read_csv(fr'{data_path}/Vehicle_sales_data.csv/car_prices.csv')
     data = data[["year", "state"]]
     cleaned_data = data.groupby('year').count()
+    cleaned_data.reset_index(drop=False, inplace=True)
     cleaned_data.rename(columns={"year": "Year", "state": "Number of Vehicles sold"}, inplace=True)
-    cleaned_data.sort_values(by="year")
+    cleaned_data['Year'] = cleaned_data['Year'].astype(np.int64)
+    cleaned_data.sort_values(by="Year", inplace=True)
+    cleaned_data = cleaned_data[((cleaned_data['Year'] >= 1985) & (cleaned_data['Year'] <= 2015))]
     conn = sqlite3.connect(db_path)
     cleaned_data.to_sql('Vehicle_sales_data', conn, index=False, if_exists='replace')
 
@@ -32,6 +36,10 @@ def co2_emission_data(data_path, db_path):
     data["Year"] = data["YYYYMM"].astype(str).str[:4]
     data.drop(columns="YYYYMM", inplace=True)
     cleaned_data = data.groupby("Year").sum()
+    cleaned_data.reset_index(drop=False, inplace=True)
+    cleaned_data['Year'] = cleaned_data['Year'].astype(np.int64)
+    cleaned_data = cleaned_data[((cleaned_data['Year'] >= 1985) & (cleaned_data['Year'] <= 2015))]
+    cleaned_data.rename(columns={"Value": "Co2_emission"}, inplace=True)
     conn = sqlite3.connect(db_path)
     cleaned_data.to_sql('co2_emission', conn, index=False, if_exists='replace')
 

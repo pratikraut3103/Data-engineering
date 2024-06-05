@@ -2,12 +2,12 @@
 
 ## Title
 <!-- Give your project a short title. -->
-The Impact of Economic Indicators on Housing Prices.
+The impact of vechicle sales on Co2 emission in USA untill 2015.
 
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-How do various economic indicators influence housing prices across different regions?
+Does the increase in sales of vehicles increases in the Co2 emission in USA untill 2015.
 -------------------------------------------
 ## Description
 
@@ -18,15 +18,15 @@ The relationship between housing prices and economic conditions is a critical ar
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
 ### Datasource1: ExampleSource
-1. House Prices: Advanced Regression Techniques
+1. Vehicles Sales data
 
-Dataset Name: House Prices: Advanced Regression Techniques
-Link: https://www.kaggle.com/datasets/yasserh/housing-prices-dataset
+Dataset Name: Vehicle Sales data
+Link: https://www.kaggle.com/datasets/syedanwarafridi/vehicle-sales-data
 
-2. Global Economic Data
+2. Co2 Emission data
 
-Dataset Name: Global Economic Data
-Raw Link: https://www.kaggle.com/datasets/fernandol/countries-of-the-world
+Dataset Name: Co2 Emission data
+Raw Link: https://www.kaggle.com/datasets/soheiltehranipour/co2-dataset-in-usa
 
 
 ## Work Packages
