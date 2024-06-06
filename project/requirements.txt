@@ -6,3 +6,5 @@ pytest-dependency
 openpyxl
 matplotlib
 sqlalchemy
+jupyter
+seaborn

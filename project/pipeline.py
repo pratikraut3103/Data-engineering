@@ -51,9 +51,7 @@ if __name__ == '__main__':
     base_path = os.path.abspath(os.path.join(current_dir, os.pardir))
     data_path = os.path.join(base_path, 'data')
     database_file_path = os.path.join(data_path, 'database.csv')
-
     database_name = 'Data.sqlite'
-
     db_path = os.path.join(data_path, database_name)
     vehicle_sales_data(data_path,db_path)
     co2_emission_data(data_path,db_path)
