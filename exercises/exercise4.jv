@@ -39,10 +39,10 @@ pipeline temperaturePipeline{
 
         header: true;
         columns:[
-            "id" oftype text,
+            "id" oftype integer,
             "producer" oftype text,
             "model" oftype text,
-            "month" oftype text,
+            "month" oftype integer,
             "temperature" oftype decimal,
             "battery_temperature" oftype decimal
         ];
