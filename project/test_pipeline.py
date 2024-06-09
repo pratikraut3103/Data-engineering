@@ -8,7 +8,7 @@ class TestPipeline(unittest.TestCase):
         base_path = os.path.abspath(os.path.join(current_dir, os.pardir))
         data_path = os.path.join(base_path, 'data')
 
-        my_sqlite = os.path.join(data_path, 'data.sqlite')
+        my_sqlite = os.path.join(data_path, 'Data.sqlite')
 
         print(my_sqlite)
 
