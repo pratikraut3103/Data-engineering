@@ -11,4 +11,4 @@ class TestPipeline(unittest.TestCase):
             print('data.sqlite exists.')
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(exit=False)
