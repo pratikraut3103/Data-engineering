@@ -3,7 +3,7 @@ import os
 class TestPipeline(unittest.TestCase):
     def test_check_output_file(self):
         path_current_directory = os.path.dirname(os.path.abspath(__file__))
-        my_sqlite = os.path.join(path_current_directory, '..', 'data', 'data.sqlite')
+        my_sqlite = os.path.join(path_current_directory, 'data', 'data.sqlite')
 
         print(my_sqlite)
 
