@@ -33,13 +33,18 @@ pipeline temperaturePipeline{
         write: ['id','producer','model','month','temperature','battery_temperature'];
     }
 
-    
+    valuetype greater_zero oftype integer {
+        constraints: [greater_than_zero];
+    }
+
+    constraint greater_than_zero on integer:
+        value > 0;
 
     block TemperatureInterpreter oftype TableInterpreter {
 
         header: true;
         columns:[
-            "id" oftype integer,
+            "id" oftype greater_zero,
             "producer" oftype text,
             "model" oftype text,
             "month" oftype integer,
