@@ -5,6 +5,8 @@ class TestPipeline(unittest.TestCase):
         path_current_directory = os.path.dirname(os.path.abspath(__file__))
         my_sqlite = os.path.join(path_current_directory, '..', 'data', 'data.sqlite')
 
+        print(my_sqlite)
+
         # Check if the file exists
         self.assertTrue(os.path.isfile(my_sqlite), "data.sqlite does not exist in the data folder.")
         if os.path.isfile(my_sqlite):
