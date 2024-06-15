@@ -46,7 +46,6 @@ pipeline stopsPipeline{
             "stop_lat" oftype ver_long,
              "stop_lon" oftype ver_long,
               "zone_id" oftype zone_id_equal
-
         ];
 
     }
@@ -54,7 +53,7 @@ pipeline stopsPipeline{
     
     block stopsLoader oftype SQLiteLoader {
 		table: "stops";
-		file: "./gfts.sqlite";
+		file: "./gtfs.sqlite";
 	}
 
     stopsZipExtractor
