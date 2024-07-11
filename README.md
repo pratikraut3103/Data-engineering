@@ -2,10 +2,10 @@
 
 ![](https://byob.yarr.is/pratikraut3103/Data-engineering/score_ex1) ![](https://byob.yarr.is/pratikraut3103/Data-engineering/score_ex2) ![](https://byob.yarr.is/pratikraut3103/Data-engineering/score_ex3) ![](https://byob.yarr.is/pratikraut3103/Data-engineering/score_ex4) ![](https://byob.yarr.is/pratikraut3103/Data-engineering/score_ex5)
 
-# Methods of Advanced Data Engineering Template Project
+# Correlation Analysis between Vehicle sales and Co2 Emission in USA from 1985 untill 2015
 
-This template project provides some structure for your open data project in the MADE module at FAU.
-This repository contains (a) a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
+This report investigates the relationship between vehicle sales in the USA (1985-2015) and the corresponding increase in CO2 emissions. The study aims to analyze how the surge in vehicle sales impacts carbon emissions, contributing to the greenhouse effect and climate change.
+
 Before you begin, make sure you have [Python](https://www.python.org/) and [Jayvee](https://github.com/jvalue/jayvee) installed. We will work with [Jupyter notebooks](https://jupyter.org/). The easiest way to do so is to set up [VSCode](https://code.visualstudio.com/) with the [Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
 
 To get started, please follow these steps:
